@@ -58,6 +58,26 @@ The workflow processes the inquiry and produces:
 
 The lead is then logged into a CSV CRM file and a structured Telegram alert is sent to the admin for manual follow-up.
 
+## Screenshots
+
+### n8n Workflow
+
+![n8n Workflow](anna_3_0_n8n_workflow.png)
+
+### CSV CRM Logging
+
+![CSV CRM](anna_3_0_csv_crm.png)
+
+### Telegram Admin Alert
+
+![Telegram Alert](anna_3_0_telegram_alert.png)
+
+## Workflow Export
+
+The exported n8n workflow JSON is included in this repository:
+
+[anna_3_0_lead_qualification_workflow_v1_0_demo_mvp.json](anna_3_0_lead_qualification_workflow_v1_0_demo_mvp.json)
+
 ## Human-in-the-Loop Design
 
 This workflow does not send automatic messages to leads.
@@ -78,6 +98,7 @@ Implemented:
 - local Docker setup
 - published n8n workflow version
 - exported workflow JSON backup
+- portfolio screenshots added to GitHub
 
 ## Next Steps
 
@@ -87,11 +108,11 @@ Planned improvements:
 - connect real lead input sources
 - add Google Sheets CRM integration
 - add lead status tracking
-- add screenshots and workflow export
+- add improved CRM fields and status pipeline
 - add optional voice layer in a future version
 
 ## Notes
 
 This repository is a portfolio demo.
 
-It does not include private credentials, bot tokens, .env files, real customer data, or production secrets.
+It does not include private credentials, bot tokens, `.env` files, real customer data, or production secrets.
