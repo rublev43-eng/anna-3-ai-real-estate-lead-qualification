@@ -1,0 +1,606 @@
+{
+  "updatedAt": "2026-06-08T11:50:12.610Z",
+  "createdAt": "2026-06-07T19:21:59.525Z",
+  "id": "WbatXU6byCPr83av",
+  "name": "Anna 3.0 Lead Qualification Workflow",
+  "description": null,
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "325c9719-f492-4bef-9649-ff72c61ebc74",
+      "name": "Manual Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8bc4da2a-acab-45e7-9a3a-c37e132274f2",
+              "name": "name ",
+              "value": "Test Lead",
+              "type": "string"
+            },
+            {
+              "id": "f9d6e65a-3070-4aec-967d-07559f9c4ce6",
+              "name": "telegram_or_phone",
+              "value": "@test_buyer",
+              "type": "string"
+            },
+            {
+              "id": "eb282cce-8ef2-4270-a155-84828a978e3d",
+              "name": "city_interest",
+              "value": "Batumi",
+              "type": "string"
+            },
+            {
+              "id": "399ff89f-d4b1-4d54-a4ad-96bcef033000",
+              "name": "goal",
+              "value": "investment",
+              "type": "string"
+            },
+            {
+              "id": "90f6e502-6caf-4ce4-9e3b-1d6e53cba6e9",
+              "name": "budget",
+              "value": "120000",
+              "type": "string"
+            },
+            {
+              "id": "0ecd6e6c-44b0-4fca-9979-31e5daa581d2",
+              "name": "timeline",
+              "value": "1-3 months",
+              "type": "string"
+            },
+            {
+              "id": "e898f9a4-4b42-48c6-8f6d-fb6f7887c3e8",
+              "name": "property_type",
+              "value": "apartment",
+              "type": "string"
+            },
+            {
+              "id": "2022f56f-a1e2-4aeb-b315-dcd34d50bcd9",
+              "name": "question_or_situation",
+              "value": "Хочу купить апартамент в Батуми для доходности, предлагают Orbi City, обещают 10% годовых. Хочу проверить риски.",
+              "type": "string"
+            },
+            {
+              "id": "b8f91507-20ae-4c66-b1df-a6857502a972",
+              "name": "developer_or_project_if_known",
+              "value": "Orbi City",
+              "type": "string"
+            },
+            {
+              "id": "e3668ce4-bde2-4489-bca1-513250f03fe0",
+              "name": "payment_method",
+              "value": "installment",
+              "type": "string"
+            },
+            {
+              "id": "405a0d27-3b4e-4717-a5b0-ff6a7eb366a5",
+              "name": "remote_purchase",
+              "value": "not sure",
+              "type": "string"
+            },
+            {
+              "id": "b29ec4c6-b900-4e65-93a0-93696e945f17",
+              "name": "source",
+              "value": "n8n_manual_test",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "a4a90bdf-3b20-437b-8247-5c3904f970ee",
+      "name": "Demo Lead Input"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $json;\n\nreturn [\n  {\n    json: {\n      ...input,\n\n      score: 82,\n      status: 'hot',\n      buyer_intent: 'high',\n      main_need: 'Проверить риски покупки апартамента в Orbi City для инвестиционной доходности.',\n      risk_flags: 'Завышенная обещанная доходность; рассрочка; удалённая покупка; проверка застройщика и договора',\n      next_best_action: 'Передать лиду чек-лист проверки и вручную связаться для уточнения проекта, бюджета, условий оплаты и договора.',\n      summary_for_admin: 'Лид интересуется покупкой апартамента в Батуми для доходности. Рассматривает Orbi City, обещают 10% годовых. Нужна проверка рисков перед покупкой.',\n      suggested_questions: 'Какой корпус/блок Orbi City рассматриваете? Кто продавец или агент? Есть ли договор/коммерческое предложение? Какие условия рассрочки? Планируете покупать удалённо?',\n      human_review_status: 'pending'\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "ab3813c6-0b75-469e-906d-f071b330dd03",
+      "name": "Mock AI Lead Scoring"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c7ad3aa4-0ced-4611-8ef3-df381a1c26f7",
+              "name": "telegram_alert_text",
+              "value": "🔥 Новый лид / проверка недвижимости  Имя: Test Lead Контакт: @testbuyer Город: Batumi Цель: investment Бюджет: 120000 Срок: 1-3 months Score: 82 Status: hot  Кратко: Лид интересуется покупкой апартамента в Батуми для доходности. Рассматривает Orbi City. Нужна проверка рисков перед покупкой.  Риски: Завышенная доходность; рассрочка; удаленная покупка; проверка договора.  Следующий шаг: Вручную связаться с лидом и уточнить проект, продавца, договор, условия оплаты и сроки покупки.",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        624,
+        0
+      ],
+      "id": "89ca3314-6335-440d-bfe3-cade5ea066c0",
+      "name": "Build Admin Alert"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $json;\n\nfunction clean(value) {\n  if (value === undefined || value === null) {\n    return '';\n  }\n\n  if (Array.isArray(value)) {\n    return value.join('; ');\n  }\n\n  if (typeof value === 'object') {\n    return JSON.stringify(value);\n  }\n\n  return String(value);\n}\n\nfunction csvEscape(value) {\n  const text = clean(value);\n  const escaped = text.replace(/\"/g, '\"\"');\n  return `\"${escaped}\"`;\n}\n\nconst row = [\n  input.created_at || new Date().toISOString(),\n  input.lead_id || `test-${Date.now()}`,\n  input.name || '',\n  input.telegram_or_phone || '',\n  input.city_interest || '',\n  input.goal || '',\n  input.budget || '',\n  input.timeline || '',\n  input.property_type || '',\n  input.question_or_situation || '',\n  input.developer_or_project_if_known || '',\n  input.payment_method || '',\n  input.remote_purchase || '',\n\n  input.score || '',\n  input.status || '',\n  input.buyer_intent || '',\n  input.main_need || '',\n  input.risk_flags || '',\n  input.next_best_action || '',\n  input.summary_for_admin || '',\n  input.suggested_questions || '',\n  input.human_review_status || '',\n\n  input.source || '',\n  input.notes || ''\n];\n\nconst csvLine = row.map(csvEscape).join(';') + '\\n';\n\nreturn [\n  {\n    json: {\n      ...input,\n      csv_line: csvLine\n    },\n    binary: {\n      data: {\n        data: Buffer.from(csvLine, 'utf8').toString('base64'),\n        mimeType: 'text/csv',\n        fileName: 'anna_3_0_leads.csv'\n      }\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        832,
+        0
+      ],
+      "id": "19441e1c-2ec9-43aa-903f-b992f18333d2",
+      "name": "Build CRM CSV Row"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/files/anna_3_0_leads.csv",
+        "options": {
+          "append": true
+        }
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        1040,
+        0
+      ],
+      "id": "ed3f4403-7b4f-4d97-ad22-b5b06a06fa64",
+      "name": "Append Lead to CSV CRM"
+    },
+    {
+      "parameters": {
+        "chatId": "1644982855",
+        "text": "={{ $json.telegram_alert_text }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1248,
+        0
+      ],
+      "id": "a13c7c21-e976-4a1b-9668-cee0f416f098",
+      "name": "Send Telegram Admin Alert",
+      "webhookId": "d6c2a515-b678-4867-aa4e-87f512b278d4",
+      "credentials": {
+        "telegramApi": {
+          "id": "fghXDe6J7IUsoG9e",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Demo Lead Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Demo Lead Input": {
+      "main": [
+        [
+          {
+            "node": "Mock AI Lead Scoring",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mock AI Lead Scoring": {
+      "main": [
+        [
+          {
+            "node": "Build Admin Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Admin Alert": {
+      "main": [
+        [
+          {
+            "node": "Build CRM CSV Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build CRM CSV Row": {
+      "main": [
+        [
+          {
+            "node": "Append Lead to CSV CRM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Lead to CSV CRM": {
+      "main": [
+        [
+          {
+            "node": "Send Telegram Admin Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "nodeGroups": [],
+  "pinData": {},
+  "versionId": "c7c9d754-dd20-4cb9-a167-8810058446c9",
+  "activeVersionId": "c7c9d754-dd20-4cb9-a167-8810058446c9",
+  "versionCounter": 93,
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2026-06-07T19:21:59.534Z",
+      "createdAt": "2026-06-07T19:21:59.534Z",
+      "role": "workflow:owner",
+      "workflowId": "WbatXU6byCPr83av",
+      "projectId": "Ie3l0hVV4kUriCa0",
+      "project": {
+        "updatedAt": "2026-06-07T19:08:54.506Z",
+        "createdAt": "2026-06-07T19:01:39.252Z",
+        "id": "Ie3l0hVV4kUriCa0",
+        "name": "Andrei Rublev <rublev43@gmail.com>",
+        "type": "personal",
+        "icon": null,
+        "description": null,
+        "creatorId": "fecdbd96-0110-4183-870e-35106ffb02b7"
+      }
+    }
+  ],
+  "tags": [],
+  "parentFolder": null,
+  "activeVersion": {
+    "updatedAt": "2026-06-08T12:08:34.000Z",
+    "createdAt": "2026-06-08T11:50:12.612Z",
+    "versionId": "c7c9d754-dd20-4cb9-a167-8810058446c9",
+    "workflowId": "WbatXU6byCPr83av",
+    "nodes": [
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "325c9719-f492-4bef-9649-ff72c61ebc74",
+        "name": "Manual Trigger"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "8bc4da2a-acab-45e7-9a3a-c37e132274f2",
+                "name": "name ",
+                "value": "Test Lead",
+                "type": "string"
+              },
+              {
+                "id": "f9d6e65a-3070-4aec-967d-07559f9c4ce6",
+                "name": "telegram_or_phone",
+                "value": "@test_buyer",
+                "type": "string"
+              },
+              {
+                "id": "eb282cce-8ef2-4270-a155-84828a978e3d",
+                "name": "city_interest",
+                "value": "Batumi",
+                "type": "string"
+              },
+              {
+                "id": "399ff89f-d4b1-4d54-a4ad-96bcef033000",
+                "name": "goal",
+                "value": "investment",
+                "type": "string"
+              },
+              {
+                "id": "90f6e502-6caf-4ce4-9e3b-1d6e53cba6e9",
+                "name": "budget",
+                "value": "120000",
+                "type": "string"
+              },
+              {
+                "id": "0ecd6e6c-44b0-4fca-9979-31e5daa581d2",
+                "name": "timeline",
+                "value": "1-3 months",
+                "type": "string"
+              },
+              {
+                "id": "e898f9a4-4b42-48c6-8f6d-fb6f7887c3e8",
+                "name": "property_type",
+                "value": "apartment",
+                "type": "string"
+              },
+              {
+                "id": "2022f56f-a1e2-4aeb-b315-dcd34d50bcd9",
+                "name": "question_or_situation",
+                "value": "Хочу купить апартамент в Батуми для доходности, предлагают Orbi City, обещают 10% годовых. Хочу проверить риски.",
+                "type": "string"
+              },
+              {
+                "id": "b8f91507-20ae-4c66-b1df-a6857502a972",
+                "name": "developer_or_project_if_known",
+                "value": "Orbi City",
+                "type": "string"
+              },
+              {
+                "id": "e3668ce4-bde2-4489-bca1-513250f03fe0",
+                "name": "payment_method",
+                "value": "installment",
+                "type": "string"
+              },
+              {
+                "id": "405a0d27-3b4e-4717-a5b0-ff6a7eb366a5",
+                "name": "remote_purchase",
+                "value": "not sure",
+                "type": "string"
+              },
+              {
+                "id": "b29ec4c6-b900-4e65-93a0-93696e945f17",
+                "name": "source",
+                "value": "n8n_manual_test",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          208,
+          0
+        ],
+        "id": "a4a90bdf-3b20-437b-8247-5c3904f970ee",
+        "name": "Demo Lead Input"
+      },
+      {
+        "parameters": {
+          "jsCode": "const input = $json;\n\nreturn [\n  {\n    json: {\n      ...input,\n\n      score: 82,\n      status: 'hot',\n      buyer_intent: 'high',\n      main_need: 'Проверить риски покупки апартамента в Orbi City для инвестиционной доходности.',\n      risk_flags: 'Завышенная обещанная доходность; рассрочка; удалённая покупка; проверка застройщика и договора',\n      next_best_action: 'Передать лиду чек-лист проверки и вручную связаться для уточнения проекта, бюджета, условий оплаты и договора.',\n      summary_for_admin: 'Лид интересуется покупкой апартамента в Батуми для доходности. Рассматривает Orbi City, обещают 10% годовых. Нужна проверка рисков перед покупкой.',\n      suggested_questions: 'Какой корпус/блок Orbi City рассматриваете? Кто продавец или агент? Есть ли договор/коммерческое предложение? Какие условия рассрочки? Планируете покупать удалённо?',\n      human_review_status: 'pending'\n    }\n  }\n];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          416,
+          0
+        ],
+        "id": "ab3813c6-0b75-469e-906d-f071b330dd03",
+        "name": "Mock AI Lead Scoring"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "c7ad3aa4-0ced-4611-8ef3-df381a1c26f7",
+                "name": "telegram_alert_text",
+                "value": "🔥 Новый лид / проверка недвижимости  Имя: Test Lead Контакт: @testbuyer Город: Batumi Цель: investment Бюджет: 120000 Срок: 1-3 months Score: 82 Status: hot  Кратко: Лид интересуется покупкой апартамента в Батуми для доходности. Рассматривает Orbi City. Нужна проверка рисков перед покупкой.  Риски: Завышенная доходность; рассрочка; удаленная покупка; проверка договора.  Следующий шаг: Вручную связаться с лидом и уточнить проект, продавца, договор, условия оплаты и сроки покупки.",
+                "type": "string"
+              }
+            ]
+          },
+          "includeOtherFields": true,
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          624,
+          0
+        ],
+        "id": "89ca3314-6335-440d-bfe3-cade5ea066c0",
+        "name": "Build Admin Alert"
+      },
+      {
+        "parameters": {
+          "jsCode": "const input = $json;\n\nfunction clean(value) {\n  if (value === undefined || value === null) {\n    return '';\n  }\n\n  if (Array.isArray(value)) {\n    return value.join('; ');\n  }\n\n  if (typeof value === 'object') {\n    return JSON.stringify(value);\n  }\n\n  return String(value);\n}\n\nfunction csvEscape(value) {\n  const text = clean(value);\n  const escaped = text.replace(/\"/g, '\"\"');\n  return `\"${escaped}\"`;\n}\n\nconst row = [\n  input.created_at || new Date().toISOString(),\n  input.lead_id || `test-${Date.now()}`,\n  input.name || '',\n  input.telegram_or_phone || '',\n  input.city_interest || '',\n  input.goal || '',\n  input.budget || '',\n  input.timeline || '',\n  input.property_type || '',\n  input.question_or_situation || '',\n  input.developer_or_project_if_known || '',\n  input.payment_method || '',\n  input.remote_purchase || '',\n\n  input.score || '',\n  input.status || '',\n  input.buyer_intent || '',\n  input.main_need || '',\n  input.risk_flags || '',\n  input.next_best_action || '',\n  input.summary_for_admin || '',\n  input.suggested_questions || '',\n  input.human_review_status || '',\n\n  input.source || '',\n  input.notes || ''\n];\n\nconst csvLine = row.map(csvEscape).join(';') + '\\n';\n\nreturn [\n  {\n    json: {\n      ...input,\n      csv_line: csvLine\n    },\n    binary: {\n      data: {\n        data: Buffer.from(csvLine, 'utf8').toString('base64'),\n        mimeType: 'text/csv',\n        fileName: 'anna_3_0_leads.csv'\n      }\n    }\n  }\n];"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          832,
+          0
+        ],
+        "id": "19441e1c-2ec9-43aa-903f-b992f18333d2",
+        "name": "Build CRM CSV Row"
+      },
+      {
+        "parameters": {
+          "operation": "write",
+          "fileName": "/files/anna_3_0_leads.csv",
+          "options": {
+            "append": true
+          }
+        },
+        "type": "n8n-nodes-base.readWriteFile",
+        "typeVersion": 1.1,
+        "position": [
+          1040,
+          0
+        ],
+        "id": "ed3f4403-7b4f-4d97-ad22-b5b06a06fa64",
+        "name": "Append Lead to CSV CRM"
+      },
+      {
+        "parameters": {
+          "chatId": "1644982855",
+          "text": "={{ $json.telegram_alert_text }}",
+          "additionalFields": {
+            "appendAttribution": false
+          }
+        },
+        "type": "n8n-nodes-base.telegram",
+        "typeVersion": 1.2,
+        "position": [
+          1248,
+          0
+        ],
+        "id": "a13c7c21-e976-4a1b-9668-cee0f416f098",
+        "name": "Send Telegram Admin Alert",
+        "webhookId": "d6c2a515-b678-4867-aa4e-87f512b278d4",
+        "credentials": {
+          "telegramApi": {
+            "id": "fghXDe6J7IUsoG9e",
+            "name": "Telegram account"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Manual Trigger": {
+        "main": [
+          [
+            {
+              "node": "Demo Lead Input",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Demo Lead Input": {
+        "main": [
+          [
+            {
+              "node": "Mock AI Lead Scoring",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Mock AI Lead Scoring": {
+        "main": [
+          [
+            {
+              "node": "Build Admin Alert",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Build Admin Alert": {
+        "main": [
+          [
+            {
+              "node": "Build CRM CSV Row",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Build CRM CSV Row": {
+        "main": [
+          [
+            {
+              "node": "Append Lead to CSV CRM",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Append Lead to CSV CRM": {
+        "main": [
+          [
+            {
+              "node": "Send Telegram Admin Alert",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "nodeGroups": [],
+    "authors": "Andrei Rublev",
+    "name": "v1.0 - Demo MVP: CSV CRM + Telegram Alert",
+    "description": "First stable demo version of Anna 3.0 workflow-layer. \nManual demo lead input → mock AI lead scoring → admin alert builder → CSV CRM logging → Telegram admin notification. \nIncludes human-in-the-loop review, no automatic outreach, no spam, and local CSV storage via Docker volume.",
+    "autosaved": true,
+    "workflowPublishHistory": [
+      {
+        "createdAt": "2026-06-08T12:08:34.353Z",
+        "id": 1,
+        "workflowId": "WbatXU6byCPr83av",
+        "versionId": "c7c9d754-dd20-4cb9-a167-8810058446c9",
+        "event": "activated",
+        "userId": "fecdbd96-0110-4183-870e-35106ffb02b7"
+      }
+    ]
+  },
+  "scopes": [
+    "execution:reveal",
+    "workflow:create",
+    "workflow:delete",
+    "workflow:disableRedaction",
+    "workflow:enableRedaction",
+    "workflow:execute",
+    "workflow:execute-chat",
+    "workflow:export",
+    "workflow:list",
+    "workflow:move",
+    "workflow:publish",
+    "workflow:read",
+    "workflow:share",
+    "workflow:unpublish",
+    "workflow:unshare",
+    "workflow:update"
+  ],
+  "checksum": "8ecedd406482911d7d2c1e25d121006428444c6b22f2ba3d6ebf8c5fc8a9f868"
+}
